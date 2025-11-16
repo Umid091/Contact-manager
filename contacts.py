@@ -1,3 +1,6 @@
+import re
+
+
 class Contacts:
     def __init__(self,name,phone_number,email,):
         self.name=name
@@ -17,4 +20,84 @@ def view_contacts(s:list):
         print(f'{contact}-contact \n name:{i.name},\n phone_number:{i.phone_number},\n email:{i.email}')
         print("----------------------------------------")
 
+# view_contacts(baza)
+
+
+def add_connacts(s: list):
+    name = input("name: ")
+    phone_number = input("phone_number: ")
+    email = input("email: ")
+
+    if (
+            re.fullmatch(r"^[A-Za-z]{2,25}$", name) and
+            re.fullmatch(r"^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$", phone_number) and
+            re.fullmatch(r"[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+", email)
+        ):
+            print("✔ Hammasi to‘g‘ri  kontakt qo‘shildi")
+            contact=Contacts(name, phone_number, email)
+            s.append(contact)
+
+    else:
+        print("❌ Ma'lumotlar noto‘g‘ri Kontakt qo‘shilmadi!!!!!!!")
+
+# add_connacts(baza)
+# view_contacts(baza)
+
+def contact_update(s:list):
+    serch_name=input("Tahrirlash uchun contakt ismini kiriting:")
+    for i in s:
+        if i.name==serch_name:
+            print("Qaysi parametrni tahrirlamoqchisiz \n 1.name \n 2.phone_number \n 3.email ")
+            tanlov=input("tanlovni kiriting(1/2/3):")
+            if tanlov=="1":
+                new_name=input("new_nameni kiriting:")
+                if re.fullmatch(r"^[A-Za-z]{2,25}$",new_name):
+                    i.name=new_name
+                    print("✔ name muvaffaqiyatli yangilandi!!!")
+                else:
+                    print("❌ new_name  noto'g'ri formatda")
+            elif tanlov=="2":
+                new_phone_number=input("new_phone_number ni kiriting:")
+                if re.fullmatch(r"^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$",new_phone_number):
+                    i.phone_number=new_phone_number
+                    print("✔ phone_number muvaffaqiyatli yangilandi!!!")
+                else:
+                    print("❌ new_phone_number noto'g'ri formatda")
+            elif tanlov=="3":
+                new_email=input("new_email ni kiriting:")
+                if re.fullmatch(r"[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+",new_email):
+                    i.email=new_email
+                    print("✔ email muvaffaqiyatli yangilandi!!!")
+                else:
+                    print("❌new_email noto'g'ri formatda")
+            else:
+                print("❌ bu noto'g'ri tanlov")
+            return
+
+    print("❌ Bunday  ism bo'yicha contact topiladi ")
+
+
+# contact_update(baza)
+# view_contacts(baza)
+
+def delete_contact(s:list):
+    serch_name = input(" O'chirmoqchi bo'lgan name ni kiring: ")
+    for i in range(len(s)):
+        if s[i].name==serch_name:
+            s.pop(i)
+            print("✔ contact muvofaqiyatli o'chirildi")
+            return
+
+    print("❌bunday kontak topolmadi")
+delete_contact(baza)
 view_contacts(baza)
+
+
+
+
+
+
+
+
+
+
