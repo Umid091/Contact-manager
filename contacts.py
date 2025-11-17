@@ -18,12 +18,13 @@ def view_contacts(s:list):
     for i in s:
         contact+=1
         print(f'{contact}-contact \n name:{i.name},\n phone_number:{i.phone_number},\n email:{i.email}')
-        print("----------------------------------------")
+        print("---------------------------------3"
+              "")
 
 # view_contacts(baza)
 
 
-def add_connacts(s: list):
+def add_contacts(s: list):
     name = input("name: ")
     phone_number = input("phone_number: ")
     email = input("email: ")
@@ -40,10 +41,10 @@ def add_connacts(s: list):
     else:
         print("❌ Ma'lumotlar noto‘g‘ri Kontakt qo‘shilmadi!!!!!!!")
 
-# add_connacts(baza)
+# add_contacts(baza)
 # view_contacts(baza)
 
-def contact_update(s:list):
+def update_contact(s:list):
     serch_name=input("Tahrirlash uchun contakt ismini kiriting:")
     for i in s:
         if i.name==serch_name:
@@ -77,7 +78,7 @@ def contact_update(s:list):
     print("❌ Bunday  ism bo'yicha contact topiladi ")
 
 
-# contact_update(baza)
+# update_contact(baza)
 # view_contacts(baza)
 
 def delete_contact(s:list):
@@ -89,8 +90,25 @@ def delete_contact(s:list):
             return
 
     print("❌bunday kontak topolmadi")
-delete_contact(baza)
-view_contacts(baza)
+# delete_contact(baza)
+# view_contacts(baza)
+
+def contact_manger(s:list):
+    while True:
+        kod=input("Qanday amal bajarmoqchisiz \n 1.view_contacts> \n 2.add_contacts> \n 3.update_contact> \n 4.delete_contact>")
+        if kod=="1":
+            view_contacts(s)
+        elif kod=="2":
+            add_contacts(s)
+        elif kod=="3":
+            update_contact(s)
+        elif kod=="4":
+            delete_contact(s)
+        else:
+            break
+contact_manger(baza)
+
+
 
 
 
